@@ -1,6 +1,7 @@
 import { Box } from "@mui/material"
 import Navbar from "../../components/layout/Navbar"
 import Banner from "../../components/Banner"
+import BookList from "./BookList"
 
 
 const Landing = () => {
@@ -13,6 +14,7 @@ const Landing = () => {
     >
       <Navbar/>
       <Banner/>
+      <BookList/>
     </Box>
   )
 }
