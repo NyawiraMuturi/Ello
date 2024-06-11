@@ -1,5 +1,5 @@
 <h1 align="center" style="display: block; font-size: 2.5em; font-weight: bold; margin-block-start: 1em; margin-block-end: 1em;">
-<a name="logo" href="[https://github.com/DVT/challenge-react-storefront-grishon-nganga)"><img align="center" src="public/ello.svg" alt="DVT store - by Grish" style="width:50%;height:50%"/></a>
+<a name="logo" href="[https://github.com/NyawiraMuturi/Ello.git)"><img align="center" src="frontend/public/ello.svg" alt="Ello Books by Dame-Techie" style="width:50%;height:50%"/></a>
 <br /><br /><strong>Ello Books by Dame-Techie</strong>
 </h1>
 
