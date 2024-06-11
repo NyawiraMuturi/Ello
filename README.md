@@ -29,12 +29,13 @@ The task was create a teacher facing-UI book assignment view. The main requireme
 
 ## Approach[![](/public/pin.svg)](#approach)
 
-1. **Project Setup**: I initialized a Nextjs project and set up prettier, husky and ESLint for better developer experience writing clean and maintainable code.
-2. **Data Fetching**: I used React Query to make API calls, focusing on error handling and asynchronous programming best practices.
-3. **User Interface**: I used TailwindCSS to Design and build clean and intuitive user interfaces fully responsive across all pages.
-4. **State Management**: Implemented state management using either local component state, or Zustand global state manager.
-5. **Routing**: Routing comes out of the box with NextJs. So that was a breeze.
-6. **TypeScript**: Leveraged TypeScript to add type safety and enhance code readability and maintainability across the entire app. Didn't @ts-ignore anywhere as well.
+1. **Project Setup**: I initialized a React project using Vite and set up prettier and ESLint for better developer experience writing clean and maintainable code.
+2. **System Design**: I used SOLID design principles for seperation of concerns. HOC and other files have a single responsibility.
+2. **Data Fetching**: I used Apollo client graphql to fetch data, focusing on error handling and asynchronous programming best practices.
+3. **User Interface**: I used Material UI to Design and build clean and intuitive user interfaces fully responsive across all pages.
+4. **State Management**: Implemented state management using either local component state (useState), or useContext for global state management.
+5. **Routing**: Routing was done using React Router V6.23.0. This was a breeze.
+6. **TypeScript**: Leveraged TypeScript to add type safety and enhance code readability and maintainability across the entire app. Didn't @ts-ignore anywhere as well. What would we do without types??
 
 <div align="right">[ <a href="#table-of-contents">↑ Back to top ↑</a> ]</div>
 
@@ -42,13 +43,13 @@ The task was create a teacher facing-UI book assignment view. The main requireme
 
 ## Additional Features[![](/public/pin.svg)](#additional-features)
 
-As per the project instructions, there was room to go above the expected outcome. In addition to the core requirements, I implemented the following features:
+As per the project instructions, there was room to go above the expected outcome. For this project, I wanted to have a ready to deploy product that I believe I would enjoy if I was a teacher. In addition to the core requirements, I implemented the following features:
 
-- Categories section listing the product categories that opens products for the specific category.
+- Reading Level section for that opens books for the specific reading level. When there are students, I believe they will be assigned books based on their reading level
 - Filtering and sorting products from FakeStore API.
 - Specific product page.
 - Signin feature.
-- Checkout.
+- Assign all books feature.
 
 <div align="right">[ <a href="#table-of-contents">↑ Back to top ↑</a> ]</div>
 
@@ -78,7 +79,7 @@ I have been very mindful of the dependencies I used in the project. Here is the 
 I implemented several performance optimizations in the application to improve speed and efficiency, including:
 
 1. **Lazy Loading**: Deferring the loading of non-essential resources until they are needed. This reduced initial page load times and improved the overall responsiveness of the application.
-2. **Caching**: As an added benefit of React Query (and by design), all the API endpoints fetching data are efficiently cached reducing need for repeated fetches and improving data retrieval speed.
+2. **Caching**: For better user experience, all session data is cached using local storage.
 3. **Code Splitting**: Leveraged code splitting techniques to split the application into smaller, more manageable chunks. Resulting in faster load times and better resource utilization.
 
 <div align="right">[ <a href="#table-of-contents">↑ Back to top ↑</a> ]</div>
@@ -97,32 +98,18 @@ I am a firm believer of writing tests to ensure the quality and reliability of a
 
 ## Available routes[![](public/pin.svg)](#available-routes)
 
-Here are the routes you can access in the DVT Store Front application:
+Here are the routes you can access in the Ello Books Frontend application:
 
-1. **Home**: The landing page of the application, displaying all available products.
+1. **Home**: The landing page of the application, displaying all available books, happy Ello, a search bar, and a reading list.
 
    - Route: /
    - Description: Displays product categories and a grid of product cards fetched from the Fake Store API.
 
-2. **Products by Category**: The landing page of the application, displaying all available products.
+2. **Reading list**: The landing page of the application, displaying all available products.
 
-   - Route: /category/[categoryId]
-   - Description: Displays product categories and a grid of product cards fetched from the Fake Store API.
+   - Route: /reading-list
+   - Description: Displays all books the teacher decides to assign young readers.
 
-3. **Product Details**: Shows detailed information about a specific product.
-
-   - Route: /products/[productId]
-   - Description: Displays detailed information about a single product, including its description, price, and other attributes.
-
-4. **Sign In**: Provides authentication for users to sign in to their accounts.
-
-   - Route: /auth/signin
-   - Description: Since signin endpoint on FakeStore API doesn't return the user, or an an endpoint to fetch a user by providing token, I had to do a little magic. (fetch a random user with id between 1 - 10, and use as the logged in user.)
-
-5. **Checkout**: Facilitates the process of completing a purchase.
-
-   - Route: /checkout
-   - Description: Guides users through the checkout process, including providing shipping information, selecting payment methods, and confirming the order.
 
 <div align="right">[ <a href="#table-of-contents">↑ Back to top ↑</a> ]</div>
 
@@ -148,9 +135,9 @@ A little sneak peak of what to expect. (for the lazy bones)
 
 ## Conclusion[![](/public/pin.svg)](#screenshots)
 
-I hope you have as much fun reviewing this submission as I did working on it.
+I hope you have as much fun reviewing this submission as I did working on it. I absolutely loved working with the theme. Those colors are popping!!!. 
 
-I really appreciate the chance to demonstrate my abilities and look forward to the feedback from the DVT team.
+I really appreciate the chance to demonstrate my abilities and look forward to the feedback from the Ello team.
 
 If you have any questions or feedback regarding my submission, please feel free to reach out via the provided contact information.
 

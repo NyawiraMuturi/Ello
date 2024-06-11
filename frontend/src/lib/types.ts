@@ -1,4 +1,3 @@
-import '@mui/material/styles';
 
 export type Book = {
     author: string;
@@ -8,7 +7,7 @@ export type Book = {
   }
 
 export type BookListItem = {
-  id:number
+  book: Book;
   quantity: number
 }
 

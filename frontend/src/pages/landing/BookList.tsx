@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Grid, Container, Box, Typography, Tabs, Tab, Button } from "@mui/material"
+import { Grid, Container, Box, Tabs, Tab, Button } from "@mui/material"
 import { fetchAllBooks } from "../../lib/constants"
 import BookCard from "../../components/cards/BookCard"
 import { Book } from "../../lib/types"
@@ -71,7 +71,6 @@ const BookList = () => {
             <Box textAlign="center" marginTop={2}>
               <Button
                 sx={{
-                  
                   backgroundColor: 'transparent',
                   border: '1px solid', 
                   borderColor: 'primary.main', 

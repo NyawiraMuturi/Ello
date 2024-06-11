@@ -1,85 +1,63 @@
-import { createContext, ReactNode, useContext } from "react"
-import { BookListItem } from "../types";
+import { createContext, ReactNode, useContext } from "react";
+import { Book, BookListItem } from "../types";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 type BookListProviderProps = {
-    children: ReactNode
-  }
-  
-  type BookListContext = {
-    getListQuantity: (id: number) => number
-    increaseListQuantity: (id: number) => void
-    decreaseListQuantity: (id: number) => void
-    removeBook: (id: number) => void
-    listQuantity: number
-    listItems: BookListItem[]
-  }
-  
-  const BookListContext = createContext({} as BookListContext)
-  
-  export const useCart = () => useContext(BookListContext)
-  
-  export const BookListProvider = ({ children }: BookListProviderProps) => {
-    const [listItems, setListItems] = useLocalStorage<BookListItem[]>(
-      "shopping-cart", [])
-  
-    const getListQuantity = (id: number) => {
-      return listItems.find(item => item.id === id)?.quantity || 0
-    }
-  
-    const increaseListQuantity = (id: number) => {
-        setListItems(currItems => {
-        if (currItems.find(item => item.id === id) == null) {
-          return [...currItems, { id, quantity: 1 }]
-        } else {
-          return currItems.map(item => {
-            if (item.id === id) {
-              return { ...item, quantity: item.quantity + 1 }
+    children: ReactNode;
+};
+
+type BookListContext = {
+    getBookQuantity: (title: string, author: string) => number;
+    increaseBookQuantity: (book: Book) => void;
+    removeBook: (title: string, author: string) => void;
+    totalQuantity: number;
+    listItems: BookListItem[];
+};
+
+const BookListContext = createContext({} as BookListContext);
+
+export const useBookList = () => useContext(BookListContext);
+
+export const BookListProvider = ({ children }: BookListProviderProps) => {
+    const [listItems, setListItems] = useLocalStorage<BookListItem[]>("book-list", []);
+
+    const findBookKey = (title: string, author: string) => `${title}-${author}`;
+
+    const getBookQuantity = (title: string, author: string) => {
+        const key = findBookKey(title, author);
+        return listItems.find(item => findBookKey(item.book.title, item.book.author) === key)?.quantity || 0;
+    };
+
+    const increaseBookQuantity = (book: Book) => {
+        setListItems(currentItems => {
+            const key = findBookKey(book.title, book.author);
+            const existingItem = currentItems.find(item => findBookKey(item.book.title, item.book.author) === key);
+            if (!existingItem) {
+               
+                return [...currentItems, { book, quantity: 1 }];
             } else {
-              return item
+                return currentItems;
             }
-          })
-        }
-      })
-    }
-  
-    const decreaseListQuantity = (id: number) => {
-        setListItems(currItems => {
-        if (currItems.find(item => item.id === id)?.quantity === 1) {
-          return currItems.filter(item => item.id !== id)
-        } else {
-          return currItems.map(item => {
-            if (item.id === id) {
-              return { ...item, quantity: item.quantity - 1 }
-            } else {
-              return item
-            }
-          })
-        }
-      })
-    }
-  
-    const removeBook =(id: number)=>{
-        setListItems(currItems => {
-        return currItems.filter(item => item.id !== id)
-      })
-    }
-  
-    const listQuantity = listItems.reduce(
-      (quantity, item) => item.quantity + quantity,0
-    )
-  
-  
+        });
+    };
+
+
+    const removeBook = (title: string, author: string) => {
+        const key = findBookKey(title, author);
+        setListItems(currentItems => currentItems.filter(item => findBookKey(item.book.title, item.book.author) !== key));
+    };
+
+    const totalQuantity = listItems.reduce((sum, item) => sum + item.quantity, 0);
+
     return (
-      <BookListContext.Provider value={{
-        getListQuantity,
-        increaseListQuantity,
-        decreaseListQuantity,
-        removeBook,
-        listQuantity,
-        listItems
-      }}>
-        {children}
-      </BookListContext.Provider>
-    )
-  }
+        <BookListContext.Provider value={{
+            getBookQuantity,
+            increaseBookQuantity,
+            removeBook,
+            totalQuantity,
+            listItems
+        }}>
+            {children}
+        </BookListContext.Provider>
+    );
+};
