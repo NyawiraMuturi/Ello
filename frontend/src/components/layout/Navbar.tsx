@@ -44,7 +44,7 @@ const Navbar = () => {
         )}
         
         
-        <WbSunnyOutlined/>
+        {/* <WbSunnyOutlined/> */}
         <img src={shelf} style={{height:40, width:40}} /> 
       </Box>
     </Box>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Grid, Container, Box, Typography, Tabs, Tab, Button} from "@mui/material"
+import { Grid, Container, Box, Typography, Tabs, Tab, Button } from "@mui/material"
 import { fetchAllBooks } from "../../lib/constants"
 import BookCard from "../../components/cards/BookCard"
 import { Book } from "../../lib/types"
@@ -8,15 +8,12 @@ import { aggregateBooksByLevel } from "../../lib/utils"
 const INITIAL_BOOKS_PER_PAGE = 9;
 const ADDITIONAL_BOOKS_PER_LOAD = 3;
 
-
-
-
 const BookList = () => {
 
   const [books, setBooks] = useState<Book[]>([])
   const [groupedBooks, setGroupedBooks] = useState<{ [level: string]: Book[] }>({});
   const [selectedTab, setSelectedTab] = useState("All Books");
-  const [booksPerPage, setBooksPerPage] = useState<{[key: string]: number}>({});
+  const [booksPerPage, setBooksPerPage] = useState<{ [key: string]: number }>({});
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -30,9 +27,9 @@ const BookList = () => {
         const initialBooksPerPage = Object.keys(grouped).reduce((acc, key) => {
           acc[key] = INITIAL_BOOKS_PER_PAGE;
           return acc;
-        }, {} as {[key: string]: number});
+        }, {} as { [key: string]: number });
         setBooksPerPage(initialBooksPerPage);
-        
+
       } catch (error) {
         console.error('Error fetching books:', error);
       }
@@ -63,7 +60,7 @@ const BookList = () => {
       </Tabs>
       {Object.entries(groupedBooks).map(([level, books]) => (
         <TabPanel key={level} value={level} selectedTab={selectedTab}>
-          <Grid container spacing={2}>
+          <Grid container spacing={4}>
             {books.slice(0, booksPerPage[level]).map((book, index) => (
               <Grid item key={index} xs={12} sm={6} md={4}>
                 <BookCard book={book} />
@@ -72,7 +69,21 @@ const BookList = () => {
           </Grid>
           {books.length > booksPerPage[level] && (
             <Box textAlign="center" marginTop={2}>
-              <Button variant="contained" onClick={() => handleLoadMore(level)}>
+              <Button
+                sx={{
+                  
+                  backgroundColor: 'transparent',
+                  border: '1px solid', 
+                  borderColor: 'primary.main', 
+                  color: 'primary.main',
+                  '&:hover': {
+                    backgroundColor:'primary.main',
+                    color: 'white',
+                  }
+                }}
+
+                variant="contained"
+                onClick={() => handleLoadMore(level)}>
                 Load More
               </Button>
             </Box>

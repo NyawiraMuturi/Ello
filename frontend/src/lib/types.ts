@@ -1,3 +1,5 @@
+import '@mui/material/styles';
+
 export type Book = {
     author: string;
     coverPhotoURL: string;
@@ -9,3 +11,4 @@ export type BookListItem = {
   id:number
   quantity: number
 }
+

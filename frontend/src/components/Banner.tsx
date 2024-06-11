@@ -10,12 +10,26 @@ const Banner = () => {
     alignItems="center"
     gap={2}
     sx={{
-      my: 4
+      my: 6
     }}
     >
-        <Typography>
-        Over 700 decodable books that match your child's reading ability. Help prevent the summer slump, without frustration
+      <Box
+      sx={{
+        width:"50%",
+        alignItems: 'center',
+        display: 'flex',
+        justifyContent: 'center',
+        color:"info.main"
+      }}
+      >
+        <Typography
+        sx={{fontSize:'34px', fontWeight:'bold'}} 
+        >
+          Assign a <span style={{color: "#FAAD00", fontSize:"38px"}}>wonderful</span> book 
+          <br /> to your young readers <span style={{color: "#FAAD00", fontSize:"38px"}}>today</span> !!
         </Typography>
+      </Box>
+
         <img 
         src={logo} 
         style={{width:"50%", objectFit:'cover'}}/>
