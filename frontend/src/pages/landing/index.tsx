@@ -9,7 +9,7 @@ const Landing = () => {
     <Box
     sx={{
       my: 4,
-      mx:6
+      mx:{xs:4, md:6}
     }}
     >
       <Navbar/>

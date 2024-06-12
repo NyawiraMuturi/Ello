@@ -15,9 +15,10 @@ const Banner = () => {
     >
       <Box
       sx={{
+        flexGrow: { xs: 1, md: 0 }, 
         width:"50%",
         alignItems: 'center',
-        display: 'flex',
+        display: { xs: 'flex', md: 'flex' },
         justifyContent: 'center',
         color:"info.main"
       }}
@@ -25,14 +26,16 @@ const Banner = () => {
         <Typography
         sx={{fontSize:'34px', fontWeight:'bold'}} 
         >
-          Assign a <span style={{color: "#FAAD00", fontSize:"38px"}}>wonderful</span> book 
-          <br /> to your young readers <span style={{color: "#FAAD00", fontSize:"38px"}}>today</span> !!
+          Assign a <span style={{color: "#FAAD00", fontSize:"38px"}}>wonderful</span> book to
+          <br />  your young readers <span style={{color: "#FAAD00", fontSize:"38px"}}>today</span> !!
         </Typography>
       </Box>
-
-        <img 
+      <Box sx={{ display: { xs: 'none', md: 'flex' }, width:"50%" }}>
+      <img 
         src={logo} 
-        style={{width:"50%", objectFit:'cover'}}/>
+        style={{width:"90%", objectFit:'cover'}}/>
+      </Box>
+
     </Box>
   )
 }

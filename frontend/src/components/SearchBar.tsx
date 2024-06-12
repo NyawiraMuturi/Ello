@@ -47,7 +47,11 @@ const SearchBar = () => {
       noOptionsText="Book not found"
       renderOption={(props, option) => (
         <Box component="li" {...props} sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Typography>
+          <Typography 
+          sx={{
+            fontSize: {xs:'10px'}
+          }}
+          >
             {option.title} - {option.author}
           </Typography>
           <Button
@@ -58,6 +62,7 @@ const SearchBar = () => {
             disabled={getBookQuantity(option.title, option.author) > 0}
             sx={{
               backgroundColor: 'transparent',
+              fontSize: { xs: '0.55rem', md: '0.875rem' },
               border: '1px solid', 
               borderColor: 'primary.main', 
               color: 'primary.main',
@@ -82,8 +87,8 @@ const SearchBar = () => {
         />
       )}
       sx={{
-        width: 500,
-        height: 50,
+        width: {xs: 250, md:500},
+      
         '& .MuiOutlinedInput-root': {
           height: '100%',
           borderRadius: '2em',
