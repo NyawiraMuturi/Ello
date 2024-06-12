@@ -59,11 +59,8 @@ The task was create a teacher facing-UI book assignment view. The main requireme
 
 As per the project instructions, there was room to go above the expected outcome. For this project, I wanted to have a ready to deploy product that I believe I would enjoy if I was a teacher. In addition to the core requirements, I implemented the following features:
 
-- Reading Level section for that opens books for the specific reading level. When there are students, I believe they will be assigned books based on their reading level
-- Filtering and sorting products from FakeStore API.
-- Specific product page.
-- Signin feature.
-- Assign all books feature.
+- Reading Level section that filters books for the specific reading level. I believe students will be assigned books based on their reading level
+- Assign all books feature that clears all books from the reading list once they are assigned.
 
 <div align="right">[ <a href="#table-of-contents">↑ Back to top ↑</a> ]</div>
 
@@ -88,7 +85,7 @@ I have been very mindful of the dependencies I used in the project. I only used 
 I implemented several performance optimizations in the application to improve speed and efficiency, including:
 
 1. **Lazy Loading**: Deferring the loading of non-essential resources until they are needed. This reduced initial page load times and improved the overall responsiveness of the application.
-2. **Caching**: For better user experience, all session data is cached using local storage.
+2. **Caching**: For better user experience, all session data is cached using local storage. Refresh the browser and test it out.
 3. **Code Splitting**: Leveraged code splitting techniques and SOLID principles to split the application into smaller, more manageable chunks. Resulting in faster load times and better resource utilization.
 4. **Data Structures**: I finally got to use a hashmap. Yaaayyy!!! My search function uses 0(1) time complexity which significantly improves resource utilization. 
 
@@ -100,15 +97,15 @@ I implemented several performance optimizations in the application to improve sp
 
 Here are the routes you can access in the Ello Books Frontend application:
 
-1. **Home**: The landing page of the application, displaying all available books, happy Ello, and a search bar. This page is soooo cuuutteee. I absolutely fell in love with the colors at Ello.
+1. **Home**: The landing page of the application.
 
    - Route: /
-   - Description: Displays all book, plus by their reading levels.
+   - Description: Displays all book, plus their reading levels. Happy, welcoming Ello is the mascot, and a search bar. This page is soooo cuuutteee. I absolutely fell in love with the colors at Ello.
 
 2. **Reading list**: Like a checkout for books.
 
    - Route: /reading-list
-   - Description: Displays all books the teacher decides to assign young readers.
+   - Description: Displays all books the teacher decides to assign young readers. The books are cleared once they are successfully assigned.
 
 
 <div align="right">[ <a href="#table-of-contents">↑ Back to top ↑</a> ]</div>
