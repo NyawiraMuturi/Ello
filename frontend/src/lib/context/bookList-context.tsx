@@ -10,6 +10,7 @@ type BookListContext = {
     getBookQuantity: (title: string, author: string) => number;
     increaseBookQuantity: (book: Book) => void;
     removeBook: (title: string, author: string) => void;
+    clearBooks: () => void;
     totalQuantity: number;
     listItems: BookListItem[];
 };
@@ -47,6 +48,10 @@ export const BookListProvider = ({ children }: BookListProviderProps) => {
         setListItems(currentItems => currentItems.filter(item => findBookKey(item.book.title, item.book.author) !== key));
     };
 
+    const clearBooks = () => {
+        setListItems([]);  
+    };
+
     const totalQuantity = listItems.reduce((sum, item) => sum + item.quantity, 0);
 
     return (
@@ -54,6 +59,7 @@ export const BookListProvider = ({ children }: BookListProviderProps) => {
             getBookQuantity,
             increaseBookQuantity,
             removeBook,
+            clearBooks,
             totalQuantity,
             listItems
         }}>
