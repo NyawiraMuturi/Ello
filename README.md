@@ -96,16 +96,6 @@ I implemented several performance optimizations in the application to improve sp
 
 ---
 
-## Testing[![](/public/pin.svg)](#testing)
-
-I am a firm believer of writing tests to ensure the quality and reliability of applications. However, for this task, since it was not directly stipulated in the project instructions, I decided to implement the following:
-
-1. **e2e testing with cypress**: I wrote one test suite for the main (/) page.
-
-<div align="right">[ <a href="#table-of-contents">↑ Back to top ↑</a> ]</div>
-
----
-
 ## Available routes[![](public/pin.svg)](#available-routes)
 
 Here are the routes you can access in the Ello Books Frontend application:
@@ -122,9 +112,6 @@ Here are the routes you can access in the Ello Books Frontend application:
 
 
 <div align="right">[ <a href="#table-of-contents">↑ Back to top ↑</a> ]</div>
-
----
-
 
 ---
 
