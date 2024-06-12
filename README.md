@@ -80,7 +80,8 @@ I implemented several performance optimizations in the application to improve sp
 
 1. **Lazy Loading**: Deferring the loading of non-essential resources until they are needed. This reduced initial page load times and improved the overall responsiveness of the application.
 2. **Caching**: For better user experience, all session data is cached using local storage.
-3. **Code Splitting**: Leveraged code splitting techniques to split the application into smaller, more manageable chunks. Resulting in faster load times and better resource utilization.
+3. **Code Splitting**: Leveraged code splitting techniques and SOLID principles to split the application into smaller, more manageable chunks. Resulting in faster load times and better resource utilization.
+4. **Data Structures**: I finally got to use a hashmap. Yaaayyy!!! my search function uses 0(1) time complexity which significantly improves resource utilization. 
 
 <div align="right">[ <a href="#table-of-contents">↑ Back to top ↑</a> ]</div>
 

@@ -38,7 +38,7 @@ const BookCard = ({ book }: BookCardProps) => {
             <Card>
                 <img src={book ? `${imagePath}${book.coverPhotoURL}` : undefined} alt={`Cover of ${book.title}`} style={{ height: "20%", width: "100%" }}/>
                 <CardContent>
-                    <Typography fontSize={16} fontWeight={600}>{book.title}</Typography>
+                    <Typography color='info.main' fontSize={16} fontWeight={600}>{book.title}</Typography>
                     <Typography variant="body2" sx={{color: "primary.main"}}>by: {book.author}</Typography>
                     <Box sx={{ marginTop: 2, width: '100%' }}>
                         {isAdded && (

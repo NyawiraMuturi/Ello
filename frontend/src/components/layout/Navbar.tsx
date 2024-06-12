@@ -5,14 +5,19 @@ import shelf from '../../assets/books.png'
 import logo from '../../assets/logo.png'
 import SearchBar from '../SearchBar';
 import { useBookList } from '../../lib/context/bookList-context';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [showSearchBar, setShowSearchBar] = useState(false);
   const { totalQuantity } = useBookList()
+  const navigate = useNavigate()
 
   const handleSearchClick = () => {
     setShowSearchBar(true);
   };
+  const handleNavigation =()=>{
+    navigate('/reading-list')
+  }
 
 
   return (
@@ -47,6 +52,7 @@ const Navbar = () => {
         <Box position="relative">
           <img src={shelf} style={{ height: 40, width: 40 }} />
           <div 
+          onClick={handleNavigation}
           style={{position:'absolute',
           top:-12,
           right:-10,

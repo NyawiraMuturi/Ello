@@ -1,94 +1,107 @@
 import { useState, useEffect } from 'react';
 import { Autocomplete, TextField, Box, Typography, Button } from "@mui/material";
 import { Book } from '../lib/types';
-import { fetchAllBooks } from '../lib/constants';  // Import the function
+import { fetchAllBooks } from '../lib/constants';
 import { useBookList } from '../lib/context/bookList-context';
 
-
 const SearchBar = () => {
-    const [inputValue, setInputValue] = useState('');
-    const [allBooks, setAllBooks] = useState<Book[]>([]);
-    const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
-    const { increaseBookQuantity, getBookQuantity } = useBookList();
+  const [inputValue, setInputValue] = useState('');
+  const [bookMap, setBookMap] = useState<{ [key: string]: Book }>({});
+  const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
+  const { increaseBookQuantity, getBookQuantity } = useBookList();
 
-    useEffect(() => {
-        // Fetch all books when the component mounts
-        fetchAllBooks().then(books => {
-            setAllBooks(books);
-        });
-    }, []);
+  useEffect(() => {
 
-    useEffect(() => {
-        // Filter books based on input value
-        if (inputValue) {
-            const filtered = allBooks.filter(book =>
-                book.title.toLowerCase().includes(inputValue.toLowerCase()) ||
-                book.author.toLowerCase().includes(inputValue.toLowerCase())
-            );
-            setFilteredBooks(filtered);
-        } else {
-            setFilteredBooks([]);
-        }
-    }, [inputValue, allBooks]);
+    fetchAllBooks().then(books => {
+      const map = books.reduce((acc, book) => {
 
-    return (
-        <Autocomplete
-        sx={{
-          width: 400,
-          height: 50,
-          '& .MuiOutlinedInput-root': {
-            height: '100%',
-            borderRadius: '2em',
-            '& fieldset': {
-              borderColor: '#28b8b8',
-              borderWidth: '1px',
-            },
-            '&.Mui-focused fieldset': {
-              borderColor: '#28b8b8',
-            },
-          },
-          '& .MuiInputBase-input': {
-            height: '50%',
-            padding: '10px',
-          },
-        }}
-            freeSolo
-            disableClearable
-            inputValue={inputValue}
-            onInputChange={(_, newInputValue) => setInputValue(newInputValue)}
-            options={filteredBooks}
-            getOptionLabel={(option) => option.title}
-            renderOption={(props, option) => (
-                <Box component="li" {...props} sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Typography>
-                        {option.title} - {option.author}
-                    </Typography>
-                    <Button 
-                        onClick={() => {
-                            if (getBookQuantity(option.title, option.author) === 0) {
-                                increaseBookQuantity(option);
-                            } else {
-                                alert("Book has already been added.");
-                            }
-                        }} 
-                        disabled={getBookQuantity(option.title, option.author) > 0}
-                    >
-                        Add
-                    </Button>
-                </Box>
-            )}
-            renderInput={(params) => (
-                <TextField
-                    {...params}
-                    label="Search Books"
-                    InputProps={{
-                        ...params.InputProps,
-                        type: 'search',
-                    }}
-                />
-            )}
+        const key = `${book.title.toLowerCase()} ${book.author.toLowerCase()}`;
+        acc[key] = book;
+        return acc;
+      }, {});
+      setBookMap(map);
+    });
+  }, []);
+
+  useEffect(() => {
+
+    if (inputValue) {
+      const searchKey = inputValue.toLowerCase();
+      const filtered = Object.keys(bookMap)
+        .filter(key => key.includes(searchKey))
+        .map(key => bookMap[key]);
+      setFilteredBooks(filtered);
+    } else {
+      setFilteredBooks([]);
+    }
+  }, [inputValue, bookMap]);
+
+  return (
+    <Autocomplete
+      freeSolo
+      disableClearable
+      inputValue={inputValue}
+      onInputChange={(_, newInputValue) => setInputValue(newInputValue)}
+      options={filteredBooks}
+      getOptionLabel={(option) => option.title}
+      noOptionsText="Book not found"
+      renderOption={(props, option) => (
+        <Box component="li" {...props} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Typography>
+            {option.title} - {option.author}
+          </Typography>
+          <Button
+            onClick={() => {
+              if (getBookQuantity(option.title, option.author) === 0) {
+                increaseBookQuantity(option);}
+            }}
+            disabled={getBookQuantity(option.title, option.author) > 0}
+            sx={{
+              backgroundColor: 'transparent',
+              border: '1px solid', 
+              borderColor: 'primary.main', 
+              color: 'primary.main',
+              '&:hover': {
+                backgroundColor:'primary.main',
+                color: 'white',
+              }
+            }}
+          >
+            Add
+          </Button>
+        </Box>
+      )}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label="Search Books"
+          InputProps={{
+            ...params.InputProps,
+            type: 'search',
+          }}
         />
-    );
+      )}
+      sx={{
+        width: 500,
+        height: 50,
+        '& .MuiOutlinedInput-root': {
+          height: '100%',
+          borderRadius: '2em',
+          '& fieldset': {
+            borderColor: '#28b8b8',
+            borderWidth: '1px',
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: '#28b8b8',
+          },
+        },
+        '& .MuiInputBase-input': {
+          height: '50%',
+          padding: '10px',
+        },
+      }}
+    />
+  );
 };
 
 export default SearchBar;
