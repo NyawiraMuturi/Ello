@@ -3,7 +3,21 @@
 <br /><br /><strong>Ello Books by Dame-Techie</strong>
 </h1>
 
-## Overview[![](/public/pin.svg)](#overview)
+## Prerequisite[![](/public/pin.png)](#overview)
+
+- Install the Backend (you local server)
+cd backend/
+npm i 
+npm start
+
+- Run Frontend
+cd frontend
+npm i
+npm run dev.
+
+All set, feel free to search, add, or remove books from the reading list. 
+
+## Overview[![](/public/pin.png)](#overview)
 
 The task was create a teacher facing-UI book assignment view. The main requirements were:
 
@@ -57,18 +71,13 @@ As per the project instructions, there was room to go above the expected outcome
 
 ## Dependencies[![](/public/pin.svg)](#dependencies)
 
-I have been very mindful of the dependencies I used in the project. Here is the non-exhaustive list of the dependencies I included for your quick glance.
+I have been very mindful of the dependencies I used in the project. I only used what I thought was necessary. Here is the non-exhaustive list of the dependencies I included for your quick glance.
 
 - React 18
-- Next - React framework
-- React Query - For API calls
-- Zustand - Global state management.
-- TailwindCSS - CSS library
-- ShadCN - Component lib (by extension radix-ui)
-- clx - Merging css utilities
-- lucide-react - Icons library
-- joi - Data validation library
-- cypress - e2e testing library
+- Apollo Client + graphql - For API calls
+- MUI - CSS library
+- Vite as prefered Bundler
+
 
 <div align="right">[ <a href="#table-of-contents">↑ Back to top ↑</a> ]</div>
 
@@ -81,7 +90,7 @@ I implemented several performance optimizations in the application to improve sp
 1. **Lazy Loading**: Deferring the loading of non-essential resources until they are needed. This reduced initial page load times and improved the overall responsiveness of the application.
 2. **Caching**: For better user experience, all session data is cached using local storage.
 3. **Code Splitting**: Leveraged code splitting techniques and SOLID principles to split the application into smaller, more manageable chunks. Resulting in faster load times and better resource utilization.
-4. **Data Structures**: I finally got to use a hashmap. Yaaayyy!!! my search function uses 0(1) time complexity which significantly improves resource utilization. 
+4. **Data Structures**: I finally got to use a hashmap. Yaaayyy!!! My search function uses 0(1) time complexity which significantly improves resource utilization. 
 
 <div align="right">[ <a href="#table-of-contents">↑ Back to top ↑</a> ]</div>
 
@@ -101,12 +110,12 @@ I am a firm believer of writing tests to ensure the quality and reliability of a
 
 Here are the routes you can access in the Ello Books Frontend application:
 
-1. **Home**: The landing page of the application, displaying all available books, happy Ello, a search bar, and a reading list.
+1. **Home**: The landing page of the application, displaying all available books, happy Ello, and a search bar. This page is soooo cuuutteee. I absolutely fell in love with the colors at Ello.
 
    - Route: /
-   - Description: Displays product categories and a grid of product cards fetched from the Fake Store API.
+   - Description: Displays all book, plus by their reading levels.
 
-2. **Reading list**: The landing page of the application, displaying all available products.
+2. **Reading list**: Like a checkout for books.
 
    - Route: /reading-list
    - Description: Displays all books the teacher decides to assign young readers.
@@ -116,21 +125,6 @@ Here are the routes you can access in the Ello Books Frontend application:
 
 ---
 
-## Screenshots[![](/public/pin.svg)](#screenshots)
-
-A little sneak peak of what to expect. (for the lazy bones)
-
-|    ![Image 1](/public/shots/image1.png)     |  ![Image 2](/public/shots/image2.png)  |  ![Image 3](/public/shots/image3.png)  |
-| :-----------------------------------------: | :------------------------------------: | :------------------------------------: |
-|   categories and products sections (/) /    |          products section (/)          |      mobile products section (/)       |
-|    ![Image 4](/public/shots/image4.png)     |  ![Image 5](/public/shots/image5.png)  |  ![Image 6](/public/shots/image6.png)  |
-| mobile categories and products sections (/) |          desktop cart drawer           |           mobile cart drawer           |
-|    ![Image 7](/public/shots/image7.png)     |  ![Image 8](/public/shots/image8.png)  |  ![Image 9](/public/shots/image9.png)  |
-|          desktop checkout section           |        desktop checkout section        |          successful checkout           |
-|   ![Image 10](/public/shots/image10.png)    | ![Image 10](/public/shots/image11.png) | ![Image 10](/public/shots/image12.png) |
-|         desktop product description         |       mobile product description       |       mobile product description       |
-
-<div align="right">[ <a href="#table-of-contents">↑ Back to top ↑</a> ]</div>
 
 ---
 

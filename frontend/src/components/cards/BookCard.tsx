@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Box, Card, CardContent, Typography, Button } from "@mui/material";
+import { Box, Card, CardContent, Typography, Button, Snackbar, Alert } from "@mui/material";
 import AddOutlined from '@mui/icons-material/AddOutlined';
 import CheckOutlined from '@mui/icons-material/CheckOutlined';
 import { useBookList } from "../../lib/context/bookList-context";
@@ -13,6 +13,8 @@ const BookCard = ({ book }: BookCardProps) => {
     const imagePath = "src/";
     const { increaseBookQuantity, removeBook, getBookQuantity } = useBookList();
     const [isAdded, setIsAdded] = useState(false);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState("");
 
     useEffect(() => {
         const initialQuantity = getBookQuantity(book.title, book.author);
@@ -24,7 +26,8 @@ const BookCard = ({ book }: BookCardProps) => {
             increaseBookQuantity(book);
             setIsAdded(true);
         } else {
-            alert("Book has already been added.");
+            setSnackbarMessage("Book has already been added.");
+            setSnackbarOpen(true);
         }
     };
 
@@ -76,6 +79,11 @@ const BookCard = ({ book }: BookCardProps) => {
             >
                 {isAdded ? <CheckOutlined /> : <AddOutlined />}
             </Box>
+            <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={snackbarOpen} autoHideDuration={1000} onClose={() => setSnackbarOpen(false)}>
+                <Alert onClose={() => setSnackbarOpen(false)}  severity="error" sx={{ width: '100%' }}>
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
         </Box>
     );
 };
